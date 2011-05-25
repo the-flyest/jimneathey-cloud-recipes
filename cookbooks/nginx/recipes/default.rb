@@ -1,9 +1,9 @@
 enable_package "www-servers/nginx" do
-  version "0.7.65-r4"
+  version "0.8.54"
 end
 
 package "www-servers/nginx" do
-  version "0.7.65-r4"
+  version "0.8.54"
   action :install
 end
 
