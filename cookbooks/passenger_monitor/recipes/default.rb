@@ -8,7 +8,7 @@ if ['app_master', 'app', 'solo'].include?(node[:instance_role])
       day '*'
       weekday '*'
       month '*'
-      command "/usr/bin/lockrun --lockfile=/var/run/passenger_monitor_#{app_name}.lockrun -- /bin/bash -c '/engineyard/bin/passenger_monitor #{app_name} -f #{app['type']} >/dev/null 2>&1'"
+      command "/usr/bin/lockrun --lockfile=/var/run/passenger_monitor_#{app_name}.lockrun -- /bin/bash -c '/engineyard/bin/passenger_monitor #{app_name} -f #{data['type']} -l #{limit}  >/dev/null 2>&1'"
     end
   end
 end
