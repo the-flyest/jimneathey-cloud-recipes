@@ -3,6 +3,10 @@
 # Recipe:: default
 #
 
+# Upate this
+appname = 'yourapp'
+
+# Install Redis on util slice named "redis"
 if node[:instance_role] == 'util' && node[:name][/^redis/i]
   execute "set_overcommit_memory" do
     command "echo 1 > /proc/sys/vm/overcommit_memory"
@@ -35,7 +39,7 @@ if node[:instance_role] == 'util' && node[:name][/^redis/i]
       :pidfile => '/var/run/redis_util.pid',
       :basedir => '/data/redis',
       :logfile => '/data/redis/redis.log',
-      :port  => '6379',
+      :port => '6379',
       :loglevel => 'notice',
       :timeout => 300000,
     })
@@ -57,5 +61,23 @@ if node[:instance_role] == 'util' && node[:name][/^redis/i]
 
   execute "monit reload" do
     action :run
+  end
+end
+
+# Write redis.yml 
+if ['app_master', 'app', 'util'].include?(node[:instance_role])
+  run_for_app(appname) do |app_name, data|
+    template "/data/#{app_name}/shared/config/redis.yml" do
+      owner node[:owner_name]
+      group node[:owner_name]
+      mode 0644
+      backup 0
+      source "redis.yml.erb"
+      variables({
+        :env => node[:environment][:framework_env],
+        :host => node[:db_host],
+        :port => '6379'
+      })
+    end
   end
 end
