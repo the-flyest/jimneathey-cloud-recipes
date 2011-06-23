@@ -3,8 +3,9 @@
 # Recipe:: default
 #
 
-# Upate this
+# Upate appname
 appname = 'yourapp'
+port = '6739'
 
 # Install Redis on util slice named "redis"
 if node[:instance_role] == 'util' && node[:name][/^redis/i]
@@ -39,7 +40,7 @@ if node[:instance_role] == 'util' && node[:name][/^redis/i]
       :pidfile => '/var/run/redis_util.pid',
       :basedir => '/data/redis',
       :logfile => '/data/redis/redis.log',
-      :port => '6379',
+      :port => port,
       :loglevel => 'notice',
       :timeout => 300000,
     })
@@ -55,7 +56,7 @@ if node[:instance_role] == 'util' && node[:name][/^redis/i]
       :configfile => '/etc/redis_util.conf',
       :pidfile => '/var/run/redis_util.pid',
       :logfile => '/data/redis',
-      :port => '6379',
+      :port => port,
     })
   end
 
@@ -78,7 +79,7 @@ if ['app_master', 'app', 'util'].include?(node[:instance_role])
       variables({
         :env => node[:environment][:framework_env],
         :host => redis_host,
-        :port => '6379'
+        :port => port
       })
     end
   end
