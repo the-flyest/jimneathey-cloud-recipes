@@ -66,6 +66,8 @@ end
 
 # Write redis.yml 
 if ['app_master', 'app', 'util'].include?(node[:instance_role])
+  redis_host = node[:utility_instances].select{|i| i[:name][/^redis/i]}[0][:hostname]
+  
   run_for_app(appname) do |app_name, data|
     template "/data/#{app_name}/shared/config/redis.yml" do
       owner node[:owner_name]
@@ -75,7 +77,7 @@ if ['app_master', 'app', 'util'].include?(node[:instance_role])
       source "redis.yml.erb"
       variables({
         :env => node[:environment][:framework_env],
-        :host => node[:db_host],
+        :host => redis_host,
         :port => '6379'
       })
     end
