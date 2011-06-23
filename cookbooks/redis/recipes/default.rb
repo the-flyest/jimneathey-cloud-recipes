@@ -11,11 +11,11 @@ execute "set_overcommit_memory" do
 end
 
 enable_package "dev-db/redis" do
-  version "2.0.4"
+  version "2.2.10"
 end
 
 package "dev-db/redis" do
-  version "2.0.4"
+  version "2.2.10"
   action :upgrade
 end
 
