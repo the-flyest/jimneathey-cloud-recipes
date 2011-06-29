@@ -1,3 +1,6 @@
+# variables
+version = '3.6.17'
+
 # install dependencies
 package "dev-libs/dbus-glib" do
   version "0.76"
@@ -34,8 +37,8 @@ bash "install_firefox" do
   user "root"
   cwd "/tmp"
   code <<-EOF
-    wget http://download.mozilla.org/?product=firefox-3.6.17&os=linux&lang=en-US
-    tar -zxf firefox-3.6.17.tar.bz2
+    wget http://download.mozilla.org/?product=firefox-#{version}&os=linux&lang=en-US
+    tar -zxf firefox-#{version}.tar.bz2
     mv /tmp/firefox /usr/bin/firefox
   EOF
   not_if "test -d /usr/bin/firefox"
