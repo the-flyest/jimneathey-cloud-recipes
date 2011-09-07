@@ -8,6 +8,11 @@ remote_file '/tmp/lockrun.c' do
   action :create_if_missing
 end
 
+# stop cron
+service "vixie-cron" do
+  action :stop
+end
+
 # compile
 bash 'compiling lockrun' do
   cwd '/tmp'
@@ -17,3 +22,5 @@ bash 'compiling lockrun' do
     cp lockrun /usr/bin/
   EOF
 end
+
+# cron_nanny should automatically restart cron
