@@ -4,7 +4,7 @@
 #  }
 #end
 
-require_recipe 'mime_types'
+require_recipe 'ports'
 
 # uncomment if you want to run postgres recipe
 #require_recipe 'postgres'
