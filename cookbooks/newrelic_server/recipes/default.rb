@@ -1,6 +1,3 @@
-# edit this
-app_name = 'yourappname'
-
 # create log directory
 directory '/var/log/newrelic' do
   action :create
@@ -49,7 +46,7 @@ end
 
 # setup license key
 execute "update new relic license key" do
-  command "/usr/local/sbin/nrsysmond-config --set license_key=`grep license_key /data/#{app_name}/shared/config/newrelic.yml | awk '{print $NF}'`"
+  command "/usr/local/sbin/nrsysmond-config --set license_key=#{node[:newrelic_key]}"
 end
 
 # start nrsysmond
