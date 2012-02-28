@@ -4,7 +4,7 @@
 #  }
 #end
 
-require_recipe 'ports'
+require_recipe 'gc_passenger'
 
 # uncomment if you want to run postgres recipe
 #require_recipe 'postgres'
