@@ -13,3 +13,6 @@ if ['app_master', 'app', 'solo'].include?(node[:instance_role])
     attributes :blog_url => blog_url
   end
 end
+
+# reload nginx
+execute "/etc/init.d/nginx reload"
