@@ -1,0 +1,5 @@
+check process resque_scheduler
+  with pidfile <%= @pidfile %>
+  start program = "/bin/bash -c 'cd /data/<%= @app_name %>/current/ && RAILS_ENV=<%= @env %> PIDFILE=<%= @pidfile %> BACKGROUND=yes bundle exec rake resque:scheduler'"
+  stop program = "/bin/kill -9 `cat <%= @pidfile %>`"
+  group resque_scheduler
