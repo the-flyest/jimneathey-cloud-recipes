@@ -1,0 +1,4 @@
+# redirect <%= @domain_name %> to www.<%= @domain_name %>
+if ($host = '<%= @domain_name %>') {
+  rewrite ^/(.*)$ $scheme://www.<%= @domain_name %>/$1 permanent;
+}
