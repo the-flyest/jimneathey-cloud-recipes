@@ -69,4 +69,10 @@ types {
     
     # custom
     application/x-font-woff               woff;
+    application/ogg 					  ogg ogx;
+	video/ogg 							  ogv;
+	audio/ogg							  oga;
+ 
+	video/mp4 							  mp4 m4v;
+	audio/mpeg 							  mp3 m4a;
 }

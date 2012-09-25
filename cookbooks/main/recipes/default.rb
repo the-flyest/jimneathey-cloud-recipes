@@ -4,7 +4,9 @@
 #  }
 #end
 
-require_recipe 'gc_passenger'
+require_recipe 'mime_types'
+
+#require_recipe 'gc_passenger'
 
 # uncomment if you want to run postgres recipe
 #require_recipe 'postgres'
